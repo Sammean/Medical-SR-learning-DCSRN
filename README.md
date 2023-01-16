@@ -4,10 +4,10 @@ This project is based on replication of article: [BRAIN MRI SUPER RESOLUTION USI
 
 ## Data Format Requirements
 data organization:
-data:
-|
-|-----3d_hr_data.npy
-|-----3d_lr_data.npy
+data:  
+|  
+|-----3d_hr_data.npy   
+|-----3d_lr_data.npy  
 
 Both should have the numpy shape (N, PATCH_SIZE, PATCH_SIZE, PATCH_SIZE, 1) where N is the number of patches available.
 default: (N, 64, 64, 64, 1)
