@@ -4,10 +4,7 @@ from keras import layers, Sequential
 
 k = 16
 filter_size = 3
-
-first_conv_filter_number = 2*k
 NUMBER_OF_UNITS_PER_BLOCK = 4
-
 utilize_bias = False
 # w_init = tf.keras.initializers.HeUniform()
 w_init = tf.keras.initializers.GlorotUniform()
@@ -33,8 +30,8 @@ def dense_block(inputs, num_units=NUMBER_OF_UNITS_PER_BLOCK):
 def Generator(patch_size=64):
 
     inputs = tf.keras.layers.Input(shape=[patch_size, patch_size, patch_size, 1], dtype='float64')
-    conv0 = layers.Conv3D(first_conv_filter_number, filter_size, kernel_initializer=w_init,
-                                   use_bias=utilize_bias, padding='same', dtype=tf.float64)(inputs)
+    conv0 = layers.Conv3D(2 * k, filter_size, kernel_initializer=w_init, use_bias=utilize_bias,
+                          padding='same', dtype=tf.float64)(inputs)
     dense0 = dense_block(conv0)
     concat = layers.Concatenate(dtype=tf.float64)([conv0, dense0])
     compress0 = layers.Conv3D(2 * k, 1, padding='same', dtype=tf.float64)(concat)
